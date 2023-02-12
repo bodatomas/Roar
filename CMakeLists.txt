@@ -5,15 +5,13 @@ cmake_minimum_required(VERSION 3.8.2)
 project(RoarEngine)
 
 # Visual studio startup project
-set(VS_STARTUP_PROJECT "Weeze")
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Weeze)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_BUILD_TYPE Debug)
 set(BUILD_SHARED_LIBS TRUE)
-
-
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -80,7 +78,6 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Roar/vendor/GLFW EXCLUDE_FROM_ALL)
-
 
 # Main software
 add_subdirectory(Roar)
