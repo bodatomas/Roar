@@ -79,6 +79,9 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Roar/vendor/GLFW EXCLUDE_FROM_ALL)
 
+#GLM
+add_subdirectory(Roar/vendor/glm EXCLUDE_FROM_ALL)
+
 # Main software
 add_subdirectory(Roar)
 add_subdirectory(Weeze)

@@ -25,19 +25,18 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	add_compile_definitions(RR_PLATFORM_WINDOWS RR_BUILD_DLL)
 
 	# Include Vulkan header files from Vulkan SDK
-	target_include_directories(${R_NAME} PRIVATE 
-		${VULKAN_PATH}/Include
-		${CMAKE_SOURCE_DIR}/Roar/vendor/GLFW/include
+	target_include_directories(${R_NAME} 
+		AFTER PUBLIC ${VULKAN_PATH}/Include
 	)
 
 	# Link directory for vulkan-1
-	target_link_directories(${R_NAME} PRIVATE 
-		${VULKAN_PATH}/Lib
-		${CMAKE_SOURCE_DIR}/vendor/GLFW/lib-vc2022
+	target_link_directories(${R_NAME} 
+		PRIVATE ${VULKAN_PATH}/Lib
 	)
 endif()
 
 target_link_libraries(${R_NAME} 
 	PRIVATE ${VULKAN_LIB_LIST}
 	PRIVATE glfw
+	PRIVATE glm
 )
