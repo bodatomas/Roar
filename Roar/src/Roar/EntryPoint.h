@@ -1,4 +1,7 @@
 #pragma once
+#include <cstdlib>
+#include <stdexcept>
+#include <iostream>
 
 #ifdef RR_PLATFORM_WINDOWS
 
@@ -9,9 +12,18 @@ int main(int argc, char** argv) {
 	
 	auto app = Roar::CreateApplication();
 
-	app->Run();
+	try
+	{
+		app->Run();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
 	
 	delete app;
+	return EXIT_SUCCESS;
 }
 
 #endif
