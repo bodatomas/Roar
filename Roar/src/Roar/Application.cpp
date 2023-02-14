@@ -13,12 +13,14 @@ namespace Roar {
 	void Application::Run()
 	{
 		MainLoop();
+		
 	}
 
 	void Application::MainLoop()
 	{
-		while (!m_window.ShouldClose()) {
+		while (!window.ShouldClose()) {
 			glfwPollEvents();
 		}
 	}
+
 }

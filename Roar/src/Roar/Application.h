@@ -4,6 +4,7 @@
 
 #include "Core.h"
 #include "Window.h"
+#include "Renderer/Renderer.h"
 
 
 namespace Roar {
@@ -24,7 +25,8 @@ namespace Roar {
 	private:
 		std::string name;
 
-		Window m_window;
+		Window window;
+		Renderer renderer;
 
 		void MainLoop();
 		
