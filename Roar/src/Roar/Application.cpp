@@ -12,8 +12,9 @@ namespace Roar {
 
 	void Application::Run()
 	{
+		renderer.CheckForExtensionSupport();
+		renderer.InitVulkan();
 		MainLoop();
-		
 	}
 
 	void Application::MainLoop()

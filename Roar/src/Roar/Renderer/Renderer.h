@@ -11,6 +11,7 @@ namespace Roar {
 		~Renderer();
 
 		void InitVulkan();
+		void CheckForExtensionSupport();
 
 	private: 
 

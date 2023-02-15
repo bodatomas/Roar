@@ -1,5 +1,7 @@
 #include "Renderer.h"
 #include <stdexcept>
+#include <vector>
+#include <iostream>
 
 namespace Roar {
 
@@ -16,9 +18,7 @@ namespace Roar {
 
 	void Renderer::InitVulkan()
 	{
-		if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
-			throw std::runtime_error("failed to create instance!");
-		}
+		CreateInstance();
 	}
 
 	void Renderer::CreateInstance()
@@ -44,7 +44,24 @@ namespace Roar {
 
 		createInfo.enabledLayerCount = 0;
 
-		VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
+		if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+			throw std::runtime_error("failed to create instance!");
+		}
+	}
+
+	void Renderer::CheckForExtensionSupport()
+	{
+		uint32_t extensionCount = 0;
+		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
+		std::vector<VkExtensionProperties> extensions(extensionCount);
+		vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
+
+		std::cout << "available extensions:\n";
+
+		for (const auto& extension : extensions) {
+			std::cout << '\t' << extension.extensionName << '\n';
+		}
 	}
 
 }
