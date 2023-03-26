@@ -35,8 +35,17 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	)
 endif()
 
+target_include_directories(${R_NAME}
+	PUBLIC ${GLFW_PATH}/include
+	PUBLIC ${CMAKE_SOURCE_DIR}/Roar/src
+	PUBLIC ${GLM_PATH}
+)
+
+target_link_directories(${R_NAME} 
+	PRIVATE ${GLFW_PATH}/lib-vc2022
+)
+
 target_link_libraries(${R_NAME} 
 	PRIVATE ${VULKAN_LIB_LIST}
 	PRIVATE glfw
-	PRIVATE glm
 )

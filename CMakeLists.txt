@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_BUILD_TYPE Debug)
 set(BUILD_SHARED_LIBS TRUE)
+set(CMAKE_SUPPRESS_REGENERATION true)
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
@@ -65,23 +66,22 @@ else()
 
 	# Check if manual set path exists
 	if(NOT EXISTS "${VULKAN_PATH}")
-		message("Error: Unable to locate this Vulkan SDK path VULKAN_PATH: ${VULKAN_PATH}, please specify correct path.
-		For more information on correct installation process, please refer to subsection 'Getting started with Lunar-G SDK'
-		and 'Setting up first project with CMake' in Chapter 3, 'Shaking hands with the device' in this book 'Learning Vulkan', ISBN - 9781786469809.")
+		message("Error: Unable to locate this Vulkan SDK path VULKAN_PATH: ${VULKAN_PATH}, please specify correct path.")
 	   return()
 	endif()
 endif()
 
 # Externals
 #GLFW
+set(GLFW_PATH ${CMAKE_SOURCE_DIR}/Roar/vendor/GLFW)
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-add_subdirectory(Roar/vendor/GLFW EXCLUDE_FROM_ALL)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+add_subdirectory(${GLFW_PATH} EXCLUDE_FROM_ALL)
 
 #GLM
-add_subdirectory(Roar/vendor/glm EXCLUDE_FROM_ALL)
+set(GLM_PATH ${CMAKE_SOURCE_DIR}/Roar/vendor/glm)
 
-# Main software
 add_subdirectory(Roar)
 add_subdirectory(Weeze)
